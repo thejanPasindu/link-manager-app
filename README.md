@@ -113,4 +113,4 @@ link-manager-app/
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details
+This project is licensed under a custom Non-Commercial License - see the [LICENSE.md](LICENSE.md) file for details. This license allows for private use, modification, and educational purposes, but restricts commercial use. Please read the license terms carefully before using this software.
