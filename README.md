@@ -1,36 +1,116 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Link Management App
+
+A modern web application built with Next.js for managing and organizing web links with automatic metadata extraction, categorization, and search capabilities.
+
+## Features
+
+- 🔍 **Smart Link Management**: Automatically fetches metadata (title, description, thumbnail) from URLs
+- 📂 **Category Organization**: Create and manage categories to organize links
+- 🎯 **Flexible Views**: Toggle between grid and list views
+- 🔎 **Search Functionality**: Search through links by title, description, or URL
+- ⚡ **Real-time Updates**: Instant updates when adding or modifying links
+- 📱 **Responsive Design**: Works seamlessly across devices
+
+## Tech Stack
+
+- **Frontend**: Next.js 15.3
+- **Database**: SQLite with Prisma ORM
+- **Styling**: Tailwind CSS
+- **Icons**: React Icons
+
+## Prerequisites
+
+Before you begin, ensure you have installed:
+- Node.js (v18 or higher)
+- npm or yarn
+- Git
 
 ## Getting Started
 
-First, run the development server:
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd link-manager-app
+   ```
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+2. **Install dependencies**
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+3. **Set up the database**
+   ```bash
+   npx prisma generate
+   npx prisma db push
+   ```
+
+4. **Start the development server**
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+5. **Open the application**
+   Open [http://localhost:3000](http://localhost:3000) in your browser
+
+## Project Structure
+
+```
+link-manager-app/
+├── app/                    # Next.js app directory
+│   ├── api/               # API routes
+│   │   ├── categories/    # Category-related endpoints
+│   │   └── links/         # Link-related endpoints
+│   ├── contexts/          # React contexts
+│   ├── layout.tsx         # Root layout component
+│   └── page.tsx          # Main page component
+├── prisma/                # Prisma configuration and schemas
+│   ├── schema.prisma     # Database schema
+│   └── dev.db           # SQLite database file
+└── public/               # Static assets
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Database Schema
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Category
+- `id`: INTEGER (Primary Key)
+- `name`: TEXT
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Link
+- `id`: INTEGER (Primary Key)
+- `url`: TEXT
+- `title`: TEXT
+- `description`: TEXT
+- `thumbnail`: TEXT
+- `categoryId`: INTEGER (Foreign Key)
+- `createdAt`: DATETIME
+- `updatedAt`: DATETIME
 
-## Learn More
+## Available Scripts
 
-To learn more about Next.js, take a look at the following resources:
+- `npm run dev`: Start development server
+- `npm run build`: Build for production
+- `npm start`: Start production server
+- `npm run lint`: Run ESLint
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Development Notes
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- All new links without a category are automatically added to "Miscellaneous"
+- Metadata fetching is automatic when adding new links
+- Categories are sorted alphabetically
+- The application uses SQLite for simplicity, but can be adapted for other databases
 
-## Deploy on Vercel
+## Contributing
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details
